@@ -10,3 +10,7 @@ input_dialog_names:
 # The output channel name that the messages will be forwarded to.
 # The user running the client must be that channel admin, and have the channel present on it's dialogs.
 output_dialog_name: 'Telegram'
+
+message_keywords: # Only messages containing these keywords will be forwarded. Leave blank to forward all messages.
+  - FOO
+  - BAR

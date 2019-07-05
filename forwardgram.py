@@ -8,6 +8,18 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(level
 logging.getLogger('telethon').setLevel(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
+def is_message_allowed(message, config):
+    keywords = config['message_keywords']
+
+    if keywords is None:
+        return True
+    else:
+        for keyword in keywords:
+            if keyword in message.message:
+                return True
+
+    return False
+
 
 def start(config):
     client = TelegramClient(config["session_name"],
@@ -30,7 +42,8 @@ def start(config):
 
     @client.on(events.NewMessage(chats=input_dialog_entities))
     async def handler(event):
-        await client.forward_messages(output_dialog_entity, event.message)
+        if is_message_allowed(event.message, config):
+            await client.forward_messages(output_dialog_entity, event.message)
 
     client.run_until_disconnected()
 
