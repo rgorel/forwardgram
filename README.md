@@ -1,5 +1,5 @@
 # forwardgram
-Forward messages from multiple Telegram channels to one of your own!
+Forward messages from multiple Telegram dialogs to another dialog.
 
 ## Setup
 - `python3.7 -m pip install requirements.txt`.
