@@ -9,13 +9,13 @@ logging.getLogger('telethon').setLevel(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 def is_message_allowed(message, config):
-    keywords = config['message_keywords']
+    keywords = config.get('message_keywords')
 
     if keywords is None:
         return True
     else:
         for keyword in keywords:
-            if keyword in message.message:
+            if keyword and keyword in message.message:
                 return True
 
     return False
